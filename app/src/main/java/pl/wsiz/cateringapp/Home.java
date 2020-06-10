@@ -50,25 +50,6 @@ public class Home extends AppCompatActivity
     FirebaseRecyclerAdapter<Kategorie, MenuViewHolder> adapter;
     //private LinearLayoutManager LayoutManager;
 
-    @Override
-    public boolean onNavigationItemSelected(MenuItem item) {
-        //Handle navigation view item clicks here.
-        int id = item.getItemId();
-
-        if (id == R.id.nav_menu) {
-            //Handle item camera action
-        } else if (id == R.id.nav_cart) {
-
-        } else if (id == R.id.nav_orders) {
-
-        } else if (id == R.id.nav_logout) {
-
-        }
-
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        drawer.closeDrawer(GravityCompat.START);
-        return true;
-    }
 
 
     @Override
@@ -167,6 +148,27 @@ public class Home extends AppCompatActivity
         getMenuInflater().inflate(R.menu.home, menu);
         return true;
     }
+
+    @Override
+    public boolean onNavigationItemSelected(MenuItem item) {
+        //Handle navigation view item clicks here.
+        int id = item.getItemId();
+
+        if (id == R.id.nav_menu) {
+            //Handle item camera action
+        } else if (id == R.id.nav_cart) {
+
+        } else if (id == R.id.nav_orders) {
+
+        } else if (id == R.id.nav_logout) {
+
+        }
+
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        drawer.closeDrawer(GravityCompat.START);
+        return true;
+    }
+
 
 
 }
