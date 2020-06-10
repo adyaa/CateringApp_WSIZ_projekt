@@ -1,5 +1,6 @@
 package pl.wsiz.cateringapp;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
@@ -98,39 +99,25 @@ public class Home extends AppCompatActivity
         loadMenu();
     }
 
-  private void loadMenu() {
-      //  FirebaseRecyclerOptions<Kategorie> options =
-          //      new FirebaseRecyclerOptions.Builder<Kategorie>().setQuery(kategorie, Kategorie.class).build();
-
-        adapter = new FirebaseRecyclerAdapter<Kategorie,
-                MenuViewHolder>(Kategorie.class,R.layout.menu_item,MenuViewHolder.class,kategorie) {
+    private void loadMenu() {
+        adapter = new FirebaseRecyclerAdapter<Kategorie, MenuViewHolder>(Kategorie.class,R.layout.menu_item,MenuViewHolder.class,kategorie) {
             @Override
-            protected void onBindViewHolder(@NonNull final MenuViewHolder menuViewHolder, int i, @NonNull Kategorie kategorie) {
-                Picasso.get().load(kategorie.getImage()).placeholder(R.drawable.ladowanie).fit().into(menuViewHolder.imageView);
+            protected void populateViewHolder(MenuViewHolder viewHolder, Kategorie model, int pozycja) {
+                viewHolder.txtNazwaMenu.setText(model.getName());
+                Picasso.with(getBaseContext()).load(model.getImage()).into(viewHolder.imageView);
 
-                menuViewHolder.txtNazwaMenu.setText(kategorie.getName());
-                final Kategorie clickItem = kategorie;
-                menuViewHolder.setItemClickListener(new ItemClickListener() {
+                final Kategorie clickItem = model;
+                viewHolder.setItemClickListener(new ItemClickListener() {
                     @Override
                     public void onClick(View view, int pozycja, boolean klik) {
-                        Toast.makeText(Home.this, "" + clickItem.getName(), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(Home.this,""+clickItem.getName(), Toast.LENGTH_SHORT).show();
                     }
                 });
 
             }
-
-            @NonNull
-            @Override
-            public MenuViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-                return null;
-            }
         };
-        adapter.startListening();
-        adapter.notifyDataSetChanged();
         recycler_menu.setAdapter(adapter);
-
     }
-
 
     @Override
     public void onBackPressed() {
