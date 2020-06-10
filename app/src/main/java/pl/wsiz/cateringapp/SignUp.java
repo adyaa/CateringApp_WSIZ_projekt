@@ -51,6 +51,7 @@ public class SignUp extends AppCompatActivity {
                         //sprawdza czy taki numer już istnieje w bazie
                         if(dataSnapshot.child(edtPhone.getText().toString()).exists())
                         {
+
                             mDialog.dismiss();
                             Toast.makeText(SignUp.this, "Wybrany numer jest już zarejestrowany!", Toast.LENGTH_SHORT).show();
                         }
