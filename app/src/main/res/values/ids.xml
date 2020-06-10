@@ -2,4 +2,5 @@
 <resources>
     <item name="imageView" type="id" />
     <item name="action_settings" type="id" />
+    <item name="refresh" type="id" />
 </resources>
