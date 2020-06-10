@@ -59,7 +59,7 @@ public class Home extends AppCompatActivity
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         toolbar.setTitle("Menu");
-       // setSupportActionBar(toolbar);
+        setSupportActionBar(toolbar);
 
         //połączenie z bazą danych
         database = FirebaseDatabase.getInstance();
@@ -79,7 +79,7 @@ public class Home extends AppCompatActivity
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
-        drawer.addDrawerListener(toggle);
+        drawer.setDrawerListener(toggle);
         toggle.syncState();
 
         NavigationView navigationView = findViewById(R.id.nav_view);
@@ -102,7 +102,8 @@ public class Home extends AppCompatActivity
       //  FirebaseRecyclerOptions<Kategorie> options =
           //      new FirebaseRecyclerOptions.Builder<Kategorie>().setQuery(kategorie, Kategorie.class).build();
 
-        adapter = new FirebaseRecyclerAdapter<Kategorie, MenuViewHolder>(Kategorie.class,R.layout.menu_item,MenuViewHolder.class,kategorie) {
+        adapter = new FirebaseRecyclerAdapter<Kategorie,
+                MenuViewHolder>(Kategorie.class,R.layout.menu_item,MenuViewHolder.class,kategorie) {
             @Override
             protected void onBindViewHolder(@NonNull final MenuViewHolder menuViewHolder, int i, @NonNull Kategorie kategorie) {
                 Picasso.get().load(kategorie.getImage()).placeholder(R.drawable.ladowanie).fit().into(menuViewHolder.imageView);
