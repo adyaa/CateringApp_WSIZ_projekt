@@ -1,6 +1,7 @@
 package pl.wsiz.cateringapp;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
@@ -100,7 +101,10 @@ public class Home extends AppCompatActivity
                 viewHolder.setItemClickListener(new ItemClickListener() {
                     @Override
                     public void onClick(View view, int pozycja, boolean klik) {
-                        Toast.makeText(Home.this,""+clickItem.getName(), Toast.LENGTH_SHORT).show();
+                        //pobiera i przesyła do nowej aktywności ID kategorii
+                        Intent intent = new Intent(Home.this, FoodList.class);
+                        intent.putExtra("CategoryId", adapter.getRef(pozycja).getKey());
+                        startActivity(intent);
                     }
                 });
 
